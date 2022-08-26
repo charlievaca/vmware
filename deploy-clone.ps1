@@ -34,7 +34,7 @@ $ip="172.20.10."+$octet
         "guestinfo.ic.ipaddress" = "$ip"
     }
 
-New-InstantClone -SourceVM $SourceVM -DestinationVM $newVM -CustomizationFields $guestCustomizationValues
+New-InstantClone -SourceVM $SourceVM -DestinationVM $newVM -CustomizationFields $guestCustomizationValues Get-NetworkAdapter | Set-NetworkAdapter -Connected:$false -Confirm:$false | Set-NetworkAdapter -Connected:$true -Confirm:$false
 }
 
 $EndTime = Get-Date
