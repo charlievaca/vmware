@@ -1,14 +1,14 @@
 <#
     .NOTES
     ===========================================================================
-     Created by:    Martin Gavanda
-     Date:          Apr 29, 2018
-     WWW:           www.learnvmware.online
+     Created by:    Charlie Vaca
+     Date:          Ago 26, 2022
+     WWW:           help-it.es
     ===========================================================================
     .SYNOPSIS
-        Sample script to utilize Insta Clone feature of VMware vSphere
+        Sample script to utilize Instant Clone feature of VMware vSphere
     .DESCRIPTION
-        Deploys 20 new Inte Clone VMs from master VM with some basics customization
+        Deploys 5 new Inte Clone VMs from master VM with some basics customization
 =    .NOTES
         Make sure that you have both a vSphere 6.7 env (VC/ESXi) as well as
         as the latest PowerCLI 10.1 installed which is reuqired to use vSphere 6.7 APIs
@@ -16,13 +16,13 @@
 
 import-module ./new-instantclone.psm1
 
-Connect-VIServer -server 172.16.1.100 -user "administrator@vsphere.local" -password "MyPassword"
-$sourceVM="SourceCentOS"
+Connect-VIServer -server vc7-avs.vclass.local -user "administrator@vsphere.local" -password "VMware1!"
+$sourceVM="Oracle7-SourceVM"
 
 $StartTime = Get-Date
 Write-Host -ForegroundColor Cyan "Starting Instant Clone setup"
 
-foreach ($i in 1..20){
+foreach ($i in 1..5){
 
 $newVM="InstaClone"+$i
 $octet=$i+100
