@@ -24,10 +24,10 @@ Write-Host -ForegroundColor Cyan "Starting Instant Clone setup"
 
 foreach ($i in 1..5){
 
-$newVM="InstaClone"+$i
+$newVM="OracleInstantClone"+$i
 $octet=$i+100
 
-$ip="10.20.10."+$octet
+$ip="172.20.10."+$octet
 
  $guestCustomizationValues = @{
         "guestinfo.ic.hostname" = $newVM
