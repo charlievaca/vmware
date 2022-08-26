@@ -1,11 +1,13 @@
 #!/bin/bash
 
+#This is a Script Modified and adapted by Charlie Vaca, copied and original from MartinGavanda.
+
 set -x
 exec 2>/home/customization.log
 
 echo -e "\n=== Start Pre-Freeze ==="
 
-INTERFACE_NAME="eth0"
+INTERFACE_NAME="ens192"
 echo "Disabling ${INTERFACE_NAME} interface ..."
 ip addr flush dev ${INTERFACE_NAME}
 ip link set ${INTERFACE_NAME} down
@@ -23,7 +25,7 @@ HOSTNAME=$(vmware-rpctool "info-get guestinfo.ic.hostname")
 IP_ADDRESS=$(vmware-rpctool "info-get guestinfo.ic.ipaddress")
 
 echo "Updating IP Address ..."
-cat > /etc/sysconfig/network-scripts/ifcfg-eth0 <<EOF
+cat > /etc/sysconfig/network-scripts/ifcfg-ens192 <<EOF
 
 TYPE="Ethernet"
 PROXY_METHOD="none"
@@ -36,13 +38,13 @@ IPV6_AUTOCONF="yes"
 IPV6_DEFROUTE="yes"
 IPV6_FAILURE_FATAL="no"
 IPV6_ADDR_GEN_MODE="stable-privacy"
-NAME="eth0"
-DEVICE="eth0"
+NAME="ens192"
+DEVICE="ens192"
 ONBOOT="yes"
 IPADDR="$IP_ADDRESS"
 PREFIX="24"
-GATEWAY="10.20.10.254"
-DNS1="8.8.8.8"
+GATEWAY="172.20.10.10"
+DNS1="172.20.10.10"
 IPV6_PRIVACY="no"
 EOF
 
