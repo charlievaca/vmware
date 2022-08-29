@@ -34,7 +34,7 @@ $ip="172.20.10."+$octet
         "guestinfo.ic.ipaddress" = "$ip"
     }
 
-New-InstantClone -SourceVM $SourceVM -DestinationVM $newVM -CustomizationFields $guestCustomizationValues Get-NetworkAdapter | Set-NetworkAdapter -Connected:$false -Confirm:$false | Set-NetworkAdapter -Connected:$true -Confirm:$false
+New-InstantClone -SourceVM $SourceVM -DestinationVM $newVM -CustomizationFields $guestCustomizationValues 
 }
 
 $EndTime = Get-Date
@@ -42,5 +42,7 @@ $duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalMi
 Write-Host -ForegroundColor Cyan  "`nStartTime: $StartTime"
 Write-Host -ForegroundColor Cyan  "  EndTime: $EndTime"
 Write-Host -ForegroundColor Green " Duration: $duration minutes"
+
+Get-VM -Name *InstantClone* | Get-NetworkAdapter | Set-NetworkAdapter -Connected:$false -Confirm:$false | Set-NetworkAdapter -Connected:$true -Confirm:$false
 
 Disconnect-VIServer -Confirm:$false
