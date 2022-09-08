@@ -6,5 +6,4 @@ For detail instructions visit https://learnvmware.online/2018/06/25/insta-clone/
 
 
 Special thanks:
-Martin Gavanda
-William Lam
+Martin Gavanda and William Lam
