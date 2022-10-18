@@ -52,6 +52,7 @@ echo "Updating Hostname ..."
 hostnamectl set-hostname ${HOSTNAME}
 
 echo "Restart networking ..."
+ip link set ${INTERFACE_NAME} up
 systemctl restart network
 
 echo "Updating Hardware Clock on the system ..."
